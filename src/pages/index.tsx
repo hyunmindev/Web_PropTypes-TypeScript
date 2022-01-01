@@ -1,16 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Label from 'src/Components/Label';
 
+interface Coffee {
+  title: string;
+  id: string;
+}
+
 function Home() {
-  const [title, setTitle] = useState('first');
-  const changeProps = () => setTitle(1);
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    fetch('https://api.sampleapis.com/coffee/hot')
+      .then((res) => res.json())
+      .then((data) => setCoffees(data));
+  }, []);
+
   return (
     <>
-      <Label title={title} />
-      <button type='button' onClick={changeProps}>
-        change
-      </button>
+      {coffees.map(({ title, id }) => (
+        <Label title={title} id={id} key={id} />
+      ))}
     </>
   );
 }
