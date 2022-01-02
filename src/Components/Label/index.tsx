@@ -6,7 +6,6 @@ interface Props {
 }
 
 function Label({ title, id }: Props) {
-  console.log(typeof id);
   return (
     <p>
       {id}:{title}
@@ -14,9 +13,9 @@ function Label({ title, id }: Props) {
   );
 }
 
-// Label.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   id: PropTypes.number.isRequired,
-// };
+Label.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+};
 
 export default Label;
